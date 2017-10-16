@@ -1,6 +1,6 @@
 # MMS project 
 
-Muslim marriage site
+
 
 
 ## How to build
