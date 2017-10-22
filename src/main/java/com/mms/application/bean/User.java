@@ -15,10 +15,8 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     private int id;
-    private String username;
     private String password;
-    private String firstname;
-    private String lastname;
+    private String email;
     private boolean enabled;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -39,15 +37,8 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    @Column (name = "username")
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Transient
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column (name = "account_non_expired", columnDefinition = "TINYINT")
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -55,7 +46,9 @@ public class User implements Serializable{
         this.accountNonExpired = accountNonExpired;
     }
 
-    @Transient
+
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column (name = "account_non_locked", columnDefinition = "TINYINT")
     public boolean isAccountNonLocked() {
         return true;
     }
@@ -65,7 +58,8 @@ public class User implements Serializable{
 
     }
 
-    @Transient
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column (name = "credential_non_expired", columnDefinition = "TINYINT")
     public boolean isCredentialsNonExpired() {
         return true;
     }
@@ -81,24 +75,6 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Column (name = "firstname")
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    @Column (name = "lastname")
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -121,4 +97,12 @@ public class User implements Serializable{
         this.userRole = userRole;
     }
 
+    @Column (name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
