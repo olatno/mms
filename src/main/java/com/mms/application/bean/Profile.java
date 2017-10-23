@@ -11,6 +11,7 @@ public class Profile implements Serializable {
     private String firstname;
     private String lastname;
     private User user;
+    private Address address;
 
     @Id
     @GeneratedValue
@@ -58,5 +59,15 @@ public class Profile implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @OneToOne (cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
